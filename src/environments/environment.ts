@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   api_cars : 'https://localhost:7142/api/Cars/',
   api_brands : 'https://localhost:7142/api/Brand/',
-  api_show : 'https://localhost:7142/Upload/',
+  api_show : 'https://localhost:7142/api/upload/readimage?filename=',
   api_auth : 'https://localhost:7142/api/Auth/'
 };
 /*
