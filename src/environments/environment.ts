@@ -7,7 +7,9 @@ export const environment = {
   api_cars : 'https://localhost:7142/api/Cars/',
   api_brands : 'https://localhost:7142/api/Brand/',
   api_show : 'https://localhost:7142/api/upload/readimage?filename=',
-  api_auth : 'https://localhost:7142/api/Auth/'
+  api_auth : 'https://localhost:7142/api/Auth/',
+  api_rent : 'https://localhost:7142/api/rental/rent/',
+  api_unavailble_dates : "https://localhost:7142/api/Rental/GetUnavailbleDates/"
 };
 /*
  * For easier debugging in development mode, you can import the following file

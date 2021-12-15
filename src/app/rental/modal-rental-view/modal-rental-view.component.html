@@ -41,13 +41,44 @@
                           <div class="product-footer">
                               <div class="product-count style d-flex flex-column flex-sm-row my-4">
 
-                                  <div>
-                                      <button class="btn theme-btn--dark1 btn--xl mt-5 mt-sm-0 rounded-5" data-dismiss="modal">
-                                  <span class="mr-2"><i class="ion-android-add" ></i></span>
-                                  Add to cart
-                              </button>
-                                  </div>
-                              </div>
+
+                                <div class="container">
+                                  <div class="row">
+                                      <div class="col-12">
+                                          <h3 class="title text-capitalize mb-30 pb-25"> Rent this car</h3>
+                                          <form class="log-in-form" [formGroup] = "rentForm">
+                                              <div class="form-group row">
+                                                  <label for="startDate" class="col-md-3 col-form-label">Start date</label>
+                                                  <div class="col-md-6">
+                                                    <div class="input-group mb-2 mr-sm-2">
+                                                      <input type="date" formControlName="startDate" min= "2021-12-15"
+                                                       name="startDate"
+                                                       class="form-control" id="startDate">
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <label for="endDate" class="col-md-3 col-form-label">End date</label>
+                                                  <div class="col-md-6">
+                                                      <div class="input-group mb-2 mr-sm-2">
+                                                          <input type="date" class="form-control" formControlName="endDate" name="endDate" id="endDate">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row pb-3 text-center">
+                                                  <div class="col-md-6 offset-md-3">
+                                                      <div class="login-form-links">
+                                                          <div class="sign-btn">
+                                                              <button class="btn theme-btn--dark1 btn--md" (click)="OnSubmit(car.id)">Rent</button>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </form>
+                                      </div>
+                                    </div>
+                                </div>
+</div>
 
                               <div class="pro-social-links mt-10">
                                   <ul class="d-flex align-items-center">

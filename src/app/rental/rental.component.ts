@@ -12,7 +12,6 @@ export class RentalComponent implements OnInit{
 
   constructor( private carService : CarService) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 }

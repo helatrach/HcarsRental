@@ -25,7 +25,7 @@ export class CarService {
   getCars(){
     console.log("we in getcars service");
 
-    const urlcars = `${environment.api_cars + "GetAllCars"}`;
+    const urlcars = `${environment.api_cars + "GetAllAvailbleCars"}`;
     this.http.get(urlcars).subscribe(
       (data : Car[]) => {
         this.cars = data;
