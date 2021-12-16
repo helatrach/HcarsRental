@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
@@ -18,8 +19,10 @@ export class ModalRentalViewComponent implements OnInit {
   picUrl = `${environment.api_show}`
 
   rentForm : FormGroup;
-
+  showForm = false;
+  dateSub : Subscription;
   dates = [];
+  unavailbleDates = [];
 
   @ViewChild('closebutton') closebutton;
 
@@ -31,11 +34,6 @@ export class ModalRentalViewComponent implements OnInit {
 
   InitRentForm(){
 
-    this.rentalService.getUnvailbleDates(1).subscribe(
-      (data) => {
-        this.dates = data;
-      }
-    );
 
 
 
@@ -60,10 +58,13 @@ export class ModalRentalViewComponent implements OnInit {
       (data ) => {
         this.close();
         this.carService.getCars();
+        this.router.navigate(['/rental']);
+        this.showForm = false;
       }
     ).catch(
       (error) => {
         console.log("error" + error);
+
       }
     )
   }
@@ -72,21 +73,21 @@ export class ModalRentalViewComponent implements OnInit {
     this.closebutton.nativeElement.click();
   }
 
-  unavailbleDates = [
-    new Date("12/16/2021"),
-    new Date("12/18/2021"),
-    new Date("12/21/2021"),
-];
-
-  getUnavailbleDates(){
 
 
-      console.log(this.unavailbleDates);
+  getUnavailbleDates(carid){
 
-      console.log(this.dates);
-    this.dates.forEach(element => {
-     this.unavailbleDates.push(new Date(element));
-   });
+   this.dateSub = this.rentalService.getUnvailbleDates(carid).subscribe(
+      (data) => {
+        this.dates = data;
+        this.dates.forEach(element => {
+          this.unavailbleDates.push(new Date(element));
+        });
+      }
+    );
+
+this.showForm = true;
+
    }
 
 

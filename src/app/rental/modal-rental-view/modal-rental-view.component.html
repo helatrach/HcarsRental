@@ -1,8 +1,8 @@
-<div class="modal fade theme1 style1"  *ngFor="let car of cars" [id]="'rental-view' + car.id" tabindex="-1" role="dialog">
+<div class="modal fade theme1 style1"  *ngFor="let car of cars" [id]="'rental-view' + car.id"  tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closebutton>
           <span aria-hidden="true">&times;</span>
       </button>
           </div>
@@ -30,56 +30,50 @@
                                   <span class="star-on"><i class="fas fa-star"></i> </span>
                                   <span class="star-on de-selected"><i class="fas fa-star"></i> </span>
                               </div>
+
+
+
                           </div>
                           <div class="product-body">
                               <span class="product-price text-center"> <span class="new-price">${{car.pricePerDay}}</span>
                               </span>
-                              <p>Description : </p>
+                              <h3 class="title text-capitalize mb-30 pb-25"> Rent this car</h3>
+
+                              <div class="col-md-6 offset-md-3">
+                                <div class="login-form-links">
+                                    <div class="sign-btn">
+                                      <button class="btn theme-btn--dark1 btn--md" (click)="getUnavailbleDates(car.id)" *ngIf="!showForm">Rent this car ?</button>
+                                    </div>
+                                </div>
+                            </div>
+                              <form class="log-in-form" [formGroup] = "rentForm" *ngIf="showForm">
+
+                                <div class="form-group row" style="align-items: center;" >
+                                  <mat-form-field appearance="fill">
+                                    <mat-label>Enter a date range</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker" [min]="minDate" [dateFilter] = "dateFilter">
+                                      <input matStartDate placeholder="Start date" id="startDate" name="startDate" formControlName="startDate" >
+                                      <input matEndDate placeholder="End date"  id="endDate" name="endDate" formControlName="endDate">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+                                  </mat-form-field>
+                                </div>
+                                <div class="form-group row pb-3 text-center">
+                                    <div class="col-md-6 offset-md-3">
+                                        <div class="login-form-links">
+                                            <div class="sign-btn">
+                                                <button class="btn theme-btn--dark1 btn--md" (click)="OnSubmit(car.id)">Rent</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
 
                           </div>
 
                           <div class="product-footer">
-                              <div class="product-count style d-flex flex-column flex-sm-row my-4">
-
-
-                                <div class="container">
-                                  <div class="row">
-                                      <div class="col-12">
-                                          <h3 class="title text-capitalize mb-30 pb-25"> Rent this car</h3>
-                                          <form class="log-in-form" [formGroup] = "rentForm">
-                                              <div class="form-group row">
-                                                  <label for="startDate" class="col-md-3 col-form-label">Start date</label>
-                                                  <div class="col-md-6">
-                                                    <div class="input-group mb-2 mr-sm-2">
-                                                      <input type="date" formControlName="startDate" min= "2021-12-15"
-                                                       name="startDate"
-                                                       class="form-control" id="startDate">
-                                                    </div>
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="endDate" class="col-md-3 col-form-label">End date</label>
-                                                  <div class="col-md-6">
-                                                      <div class="input-group mb-2 mr-sm-2">
-                                                          <input type="date" class="form-control" formControlName="endDate" name="endDate" id="endDate">
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row pb-3 text-center">
-                                                  <div class="col-md-6 offset-md-3">
-                                                      <div class="login-form-links">
-                                                          <div class="sign-btn">
-                                                              <button class="btn theme-btn--dark1 btn--md" (click)="OnSubmit(car.id)">Rent</button>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </form>
-                                      </div>
-                                    </div>
-                                </div>
-</div>
-
                               <div class="pro-social-links mt-10">
                                   <ul class="d-flex align-items-center">
                                       <li class="share">Share</li>
